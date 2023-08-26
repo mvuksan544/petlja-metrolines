@@ -21,3 +21,5 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 # Completed:
 
 * Repository created
+
+Ukupno gotovo: ![](https://geps.dev/progress/5)
