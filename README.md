@@ -1,4 +1,4 @@
-# petlja-metrolines
+# Petlja-Metrolines
 
 Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica je napravljena/se pravi u pygame-u.
 
