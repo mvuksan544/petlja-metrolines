@@ -3,13 +3,19 @@
 Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica je napravljena/se pravi u pygame-u.
 
 
-In progress:
-Menu
-Art
-AI
-Gameplay mechanics
-Data structure
-Data saving system
+# In progress:
+* Menu
 
-Completed:
-Repository created
+* Art
+
+* AI
+
+* Gameplay mechanics
+
+* Data structure
+
+* Data saving system
+
+# Completed:
+
+* Repository created
