@@ -12,6 +12,8 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 * Gameplay mechanics
 
+* Game progression
+
 * Data structure
 
 * Data saving system
