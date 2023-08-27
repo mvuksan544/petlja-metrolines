@@ -3,6 +3,7 @@ import pygame as pg
 pg.init()
 
 backgroundcolor=((0, 10, 30))
+bgcm = ((22, 20, 22))
 
 running=True
 WIDTH=1920
@@ -15,6 +16,13 @@ font = pg.font.Font('freesansbold.ttf',ts)
 text = font.render('Petlja Metrolines', True, "White", backgroundcolor)
 textRect = text.get_rect()
 textRect.center = (tx,ty)
+font1 = pg.font.Font('freesansbold.ttf',70)
+text1 = font1.render('Petlja Metrolines', True, "White", bgcm)
+textRect1 = text1.get_rect()
+textRect1.center = (tx,200)
+def menu():
+    screen.blit(text1,textRect1)
+    
 screen=pg.display.set_mode((WIDTH, HEIGHT))
 screen.fill(backgroundcolor)
 pg.time.wait(250)
@@ -62,9 +70,8 @@ screen.blit(text, textRect)
 pg.display.update()
 pg.time.wait(800)
 
-
 while running:
-    screen.fill(backgroundcolor)
+    screen.fill(bgcm)
     for event in pg.event.get():
         if event.type ==pg.QUIT:
             running=False
@@ -85,7 +92,9 @@ while running:
     if ty>=300:
         ty -= 100
         ts+=2"""
+    
     pg.time.wait(200)
+    menu()
 
             
             
