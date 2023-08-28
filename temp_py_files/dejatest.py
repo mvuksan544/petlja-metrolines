@@ -27,6 +27,7 @@ WSLocationsW=[]
 SLocationsW=[WIDTH//4, WIDTH//7, WIDTH//7, WIDTH//5*4, WIDTH//3*2, WIDTH//8*6, WIDTH//6*5]
 SLocationsH=[HEIGHT//5*2, HEIGHT//3*2, HEIGHT//7, HEIGHT//2, HEIGHT//8*3, HEIGHT//7*2, HEIGHT//7*5 ]
 
+MetroPlace=False
 
 RSLocationsH.append(WIDTH//5)
 RSLocationsW.append(WIDTH//2)
@@ -42,19 +43,47 @@ WSLocationsH.append(WIDTH//3)
 WSLocationsH.append(HEIGHT//4)
 WSLocationsH.append(HEIGHT//2)
 WSLocationsW.append(WIDTH//2)
-WSLocationsW.append(WIDTH//3)
 WSLocationsW.append(WIDTH//3*2)
+WSLocationsW.append(WIDTH//3)
 WSLocationsW.append(WIDTH//2)
 
 
 LPicker=[[77, 247, 222],[240, 98, 98] , [125, 247, 77], [255, 252, 84], [239, 87, 250]]
-LUnlocked=[True, False, False, False, False]
+LUnlocked=[True, True, True, True, True]
+
+L0T=0
+L1T=0
+L2T=0
+L3T=0
+L4T=0
 
 line0=[]
 line1=[]
 line2=[]
 line3=[]
 line4=[]
+
+Met0x=[]
+Met0y=[]
+Met0s=[]
+
+Met1x=[]
+Met1y=[]
+Met1s=[]
+
+Met2x=[]
+Met2y=[]
+Met2s=[]
+
+Met3x=[]
+Met3y=[]
+Met3s=[]
+
+Met4x=[]
+Met4y=[]
+Met4s=[]
+
+
 
 line_selected=-1
 while running:
@@ -92,7 +121,7 @@ while running:
                 CSLocationsW.append(SLocationsW[y])
                 WSLocationsH.append(SLocationsH[y]) 
                 WSLocationsW.append(SLocationsW[y])
-                SLocationsW.remove(SLocationsW[y])                    
+                SLocationsW.remove(SLocationsW[y]) 
                 SLocationsH.remove(SLocationsH[y])
             elif x == 1:
                 SSLocationsH.append(SLocationsH[y])
@@ -116,8 +145,40 @@ while running:
                 SLocationsW.remove(SLocationsW[y])                    
                 SLocationsH.remove(SLocationsH[y])
                 
+    #Metro placement
+    pg.draw.rect(screen, [150, 150, 150], (400, HEIGHT//10*9-20, 100, 40))    
+    if event.type==pg.MOUSEBUTTONDOWN:
+        pos3=pg.mouse.get_pos()
+        if 400<pos3[0] and pos3[0]<500 and 40<pos3[1] and pos3[1]<HEIGHT//10*9+20:
+            MetroPlace=True
+            for i in range(len(LPicker)):
+                if LUnlocked[i] and abs(WIDTH//13*(5+i)-pos1[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos1[1])<=WIDTH//60:
+                    line_selected=i
+                    if i ==0:
+                        L0T+=1
+            
                 
                 
+                
+                
+                
+                
+                
+    #line drawing            
+                
+    for i in range(1, len(line0)):
+        pg.draw.lines(screen, LPicker[0], False, (line0[i-1],[line0[i-1][0], line0[i][1]], line0[i] ), 5)
+    for i in range(1, len(line1)):
+        pg.draw.lines(screen, LPicker[1], False, (line1[i-1],[line1[i-1][0], line1[i][1]], line1[i] ), 5) 
+    for i in range(1, len(line2)):
+        pg.draw.lines(screen, LPicker[2], False, (line2[i-1],[line2[i-1][0], line2[i][1]], line2[i] ), 5) 
+    for i in range(1, len(line3)):
+        pg.draw.lines(screen, LPicker[3], False, (line3[i-1],[line3[i-1][0], line3[i][1]], line3[i] ), 5)
+    for i in range(1, len(line4)):
+        pg.draw.lines(screen, LPicker[4], False, (line4[i-1],[line4[i-1][0], line4[i][1]], line4[i] ), 5)  
+                
+    #Line selection         
+
     for i in range (len(LPicker)):
         if LUnlocked[i]==True:
             pg.draw.circle(screen, LPicker[i], (WIDTH//13*(5+i), (HEIGHT//10)*9), WIDTH//60)
@@ -127,13 +188,86 @@ while running:
     if event.type==pg.MOUSEBUTTONDOWN and event.button == 1 :
         pos1=pg.mouse.get_pos()
         for i in range(len(LPicker)):
-            if abs(pos1[0]-WIDTH//13*(5+i))*abs(pos1[0]-WIDTH//13*(5+i))+abs(pos1[1]-(HEIGHT//10)*9)*abs(pos1[1]-(HEIGHT//10)*9)<=WIDTH//60*WIDTH//60:
+            if LUnlocked[i] and abs(WIDTH//13*(5+i)-pos1[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos1[1])<=WIDTH//60:
                 line_selected=i
-            print(abs(pos1[0]-WIDTH//13*(5+i))*abs(pos1[0]-WIDTH//13*(5+i))+abs(pos1[1]-(HEIGHT//10)*9)*abs(pos1[1]-(HEIGHT//10)*9))
+        
+    #metro movemant
+        
+          
                 
-                
-    if event.type==pg.MOUSEBUTTONDOWN and event.button == 3 :
-       line_selected=-1
+    if event.type==pg.MOUSEBUTTONDOWN and event.button == 3:
+        if line_selected==0 and len(line0)>0:
+           line0.pop(len(line0)-1)
+           pg.time.delay(100)
+        if line_selected==1 and len(line1)>0:
+           line1.pop(len(line1)-1)
+           pg.time.delay(100)
+        if line_selected==2 and len(line2)>0:
+           line2.pop(len(line2)-1)
+           pg.time.delay(100)
+        if line_selected==3 and len(line3)>0:
+           line3.pop(len(line3)-1)
+           pg.time.delay(100)
+        if line_selected==4 and len(line4)>0:
+           line4.pop(len(line4)-1)
+           pg.time.delay(100)
+    if event.type==pg.KEYDOWN and pg.K_ESCAPE:
+        line_selected=-1
+       
+       
+    #line drawing
+    print(line_selected)
+    if event.type==pg.MOUSEBUTTONDOWN and event.button == 1 and line_selected>=0:
+        pos2=pg.mouse.get_pos()
+        for i in range(len(WSLocationsH)):
+            if abs(WSLocationsW[i]-pos2[0])<WIDTH//70 and abs(WSLocationsH[i]-pos2[1])<WIDTH//70:
+                print(2, line_selected)
+                if line_selected==0 and (len(line0)==0 or line0[len(line0)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
+                    line0.append([WSLocationsW[i], WSLocationsH[i]])
+                    print(line0)
+                elif line_selected==1 and (len(line1)==0 or line1[len(line1)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
+                    line1.append([WSLocationsW[i], WSLocationsH[i]])    
+                elif line_selected==2 and (len(line2)==0 or line2[len(line2)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
+                    line2.append([WSLocationsW[i], WSLocationsH[i]])
+                elif line_selected==3 and (len(line3)==0 or line3[len(line3)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
+                    line3.append([WSLocationsW[i], WSLocationsH[i]])
+                elif line_selected==4 and (len(line4)==0 or line4[len(line4)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
+                    line4.append([WSLocationsW[i], WSLocationsH[i]])
+                    
     
+           
+    #print(line4)
+    if line_selected==4 and len(line4)>0:
+        pos2=pg.mouse.get_pos()
+        print(line4)
+        pg.draw.lines(screen, LPicker[4], False, (line4[len(line4)-1],[line4[len(line4)-1][0], pos2[1]], pos2 ), 5)    
+    elif line_selected==3 and len(line3)>0:
+        pos2=pg.mouse.get_pos()
+        pg.draw.lines(screen, LPicker[3], False, (line3[len(line3)-1],[line3[len(line3)-1][0], pos2[1]], pos2 ), 5)
+    elif line_selected==2 and len(line2)>0:
+        pos2=pg.mouse.get_pos()
+        pg.draw.lines(screen, LPicker[2], False, (line2[len(line2)-1],[line2[len(line2)-1][0], pos2[1]], pos2 ), 5) 
+    elif line_selected==1 and len(line1)>0:
+        pos2=pg.mouse.get_pos()
+        pg.draw.lines(screen, LPicker[1], False, (line1[len(line1)-1],[line1[len(line1)-1][0], pos2[1]], pos2 ), 5) 
+    elif line_selected==0 and len(line0)>0:
+        pos2=pg.mouse.get_pos()
+        pg.draw.lines(screen, LPicker[0], False, (line0[len(line0)-1],[line0[len(line0)-1][0], pos2[1]], pos2 ), 5)
+
     pg.display.update()
-    clock.tick(60)
+    clock.tick(60)   
+    """if event.type==pg.MOUSEBUTTONDOWN and event.button == 1 :
+        pos1=pg.mouse.get_pos()
+        for i in range(len(LPicker)):
+            if LUnlocked[i] and abs(WIDTH//13*(5+i)-pos1[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos1[1])<=WIDTH//60:
+                line_selected1=i
+                if line_selected1==0:
+                    L0T+=1
+                elif line_selected1==1:
+                    L1T+=1
+                elif line_selected1==2:
+                    L2T+=1
+                elif line_selected1==3:
+                    L3T+=1
+                elif line_selected1==4:
+                    L4T+=1"""
