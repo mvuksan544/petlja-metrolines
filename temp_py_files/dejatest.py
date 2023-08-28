@@ -7,8 +7,8 @@ backgroundcolor=((0, 10, 30))
 
 running=True
 
-WIDTH=1920
-HEIGHT=1080
+WIDTH=1440
+HEIGHT=900
 timer=1
 screen=pg.display.set_mode((WIDTH, HEIGHT))
 
@@ -66,22 +66,27 @@ line4=[]
 Met0x=[]
 Met0y=[]
 Met0s=[]
+Met0st=[]
 
 Met1x=[]
 Met1y=[]
 Met1s=[]
+Met1st=[]
 
 Met2x=[]
 Met2y=[]
 Met2s=[]
+Met2st=[]
 
 Met3x=[]
 Met3y=[]
 Met3s=[]
+Met3st=[]
 
 Met4x=[]
 Met4y=[]
 Met4s=[]
+Met4st=[]
 
 
 
@@ -152,12 +157,20 @@ while running:
         if 400<pos3[0] and pos3[0]<500 and 40<pos3[1] and pos3[1]<HEIGHT//10*9+20:
             MetroPlace=True
             for i in range(len(LPicker)):
-                if LUnlocked[i] and abs(WIDTH//13*(5+i)-pos1[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos1[1])<=WIDTH//60:
-                    line_selected=i
-                    if i ==0:
+                if LUnlocked[i] and MetroPlace and abs(WIDTH//13*(5+i)-pos3[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos3[1])<=WIDTH//60:
+                    line_selected1=i
+                    print(line_selected1)
+                    if i == 0:
                         L0T+=1
-            
-                
+                        Met0s.append(1)
+                        Met0x.append(line0[0][0])
+                        Met0y.append(line0[0][1])
+                        Met0st.append(0)
+                        MetroPlace==False
+    if MetroPlace:
+        pos4=pg.mouse.get_pos()
+        pg.draw.rect(screen, (150, 150, 150,), (pos4[0]-40, pos4[1]-17, 80, 34))
+          
                 
                 
                 
@@ -192,6 +205,21 @@ while running:
                 line_selected=i
         
     #metro movemant
+    if len(line0)>0:
+        for i in range(len(Met0y)):
+            if Met0x[i]<line0[Met0st[i]][0]:
+                Met0x[i]+=Met0s[i]
+            elif Met0x[i]>line0[Met0st[i]][0]:
+                Met0x[i]+=Met0s[i]
+            else:
+                if Met0y[i]<line0[Met0st[i]][1]:
+                    Met0y[i]+=Met0s[i]
+                elif Met0y[i]>line0[Met0st[i]][1]:
+                    Met0y[i]+=Met0s[i]
+                else:
+                    Met0st[i]=Met0st[i]+1
+    for i in range (len(Met0x)):
+        pg.draw.rect(screen, LPicker[0], (Met0x[i], Met0y[i], 10, 10))
         
           
                 
@@ -216,17 +244,14 @@ while running:
        
        
     #line drawing
-    print(line_selected)
     if event.type==pg.MOUSEBUTTONDOWN and event.button == 1 and line_selected>=0:
         pos2=pg.mouse.get_pos()
         for i in range(len(WSLocationsH)):
             if abs(WSLocationsW[i]-pos2[0])<WIDTH//70 and abs(WSLocationsH[i]-pos2[1])<WIDTH//70:
-                print(2, line_selected)
                 if line_selected==0 and (len(line0)==0 or line0[len(line0)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
                     line0.append([WSLocationsW[i], WSLocationsH[i]])
-                    print(line0)
                 elif line_selected==1 and (len(line1)==0 or line1[len(line1)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
-                    line1.append([WSLocationsW[i], WSLocationsH[i]])    
+                    line1.append([WSLocationsW[i], WSLocationsH[i]]) 
                 elif line_selected==2 and (len(line2)==0 or line2[len(line2)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
                     line2.append([WSLocationsW[i], WSLocationsH[i]])
                 elif line_selected==3 and (len(line3)==0 or line3[len(line3)-1]!=[WSLocationsW[i], WSLocationsH[i]]):
@@ -236,10 +261,9 @@ while running:
                     
     
            
-    #print(line4)
+
     if line_selected==4 and len(line4)>0:
         pos2=pg.mouse.get_pos()
-        print(line4)
         pg.draw.lines(screen, LPicker[4], False, (line4[len(line4)-1],[line4[len(line4)-1][0], pos2[1]], pos2 ), 5)    
     elif line_selected==3 and len(line3)>0:
         pos2=pg.mouse.get_pos()
@@ -256,18 +280,3 @@ while running:
 
     pg.display.update()
     clock.tick(60)   
-    """if event.type==pg.MOUSEBUTTONDOWN and event.button == 1 :
-        pos1=pg.mouse.get_pos()
-        for i in range(len(LPicker)):
-            if LUnlocked[i] and abs(WIDTH//13*(5+i)-pos1[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos1[1])<=WIDTH//60:
-                line_selected1=i
-                if line_selected1==0:
-                    L0T+=1
-                elif line_selected1==1:
-                    L1T+=1
-                elif line_selected1==2:
-                    L2T+=1
-                elif line_selected1==3:
-                    L3T+=1
-                elif line_selected1==4:
-                    L4T+=1"""
