@@ -32,4 +32,4 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 # Complete Project Progress:
 
-![](https://geps.dev/progress/45)
+![](https://geps.dev/progress/52)
