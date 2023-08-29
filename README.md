@@ -4,11 +4,6 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 
 # In progress:
-* Menu
-![](https://geps.dev/progress/90)
-
-* Art
-![](https://geps.dev/progress/53)
 
 * AI
 ![](https://geps.dev/progress/0)
@@ -30,6 +25,10 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 * Repository created
 
 * Options
+
+* Menu
+
+* Art
 
 # Complete Project Progress:
 
