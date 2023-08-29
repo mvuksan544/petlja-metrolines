@@ -4,23 +4,15 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 
 # In progress:
-* Menu
-![](https://geps.dev/progress/90)
-
-* Options
-![](https://geps.dev/progress/0)
-
-* Art
-![](https://geps.dev/progress/53)
 
 * AI
-![](https://geps.dev/progress/0)
+![](https://geps.dev/progress/10)
 
 * Gameplay mechanics
-![](https://geps.dev/progress/40)
+![](https://geps.dev/progress/70)
 
 * Game progression
-![](https://geps.dev/progress/0)
+![](https://geps.dev/progress/2)
 
 * Data structure
 ![](https://geps.dev/progress/30)
@@ -32,6 +24,12 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 * Repository created
 
+* Options
+
+* Menu
+
+* Art
+
 # Complete Project Progress:
 
-![](https://geps.dev/progress/31)
+![](https://geps.dev/progress/57)
