@@ -540,7 +540,7 @@ while running:
         STimer[k]+=1
         
         
-    #passenager spawning
+    #passengers spawning
 
     for i in range(len(WSLocationsH)):
         if STimer[i]>300:
@@ -552,18 +552,17 @@ while running:
                 print(SPassenagers)
                 
 
-    #Passenager on station drawing      Milose pls
-    for i in range (len(WSLocationsH)):
-        if SPassenagers[i][0]==0:
-            pass
-            #for j in range(1, len(SPassenagers[i])):
-                #pg.draw.lines(screen, "White", True, ([WSLocationsW[j-1]+j*20, WSLocationsH[j-1]],[WSLocationsW[j-1]+j*20-5, WSLocationsH[j-1]+5], [WSLocationsW[j-1]+i*20, WSLocationsH[j-1]+7], [WSLocationsW[j-1]+j*20+5, WSLocationsH[j-1]-5]))
+    #Passengers on station drawing      Milose pls
+    for i in range (len(SPassenagers)):
         for j in range(1, len(SPassenagers[i])):
-            if SPassenagers[j][0]==3:
-                pg.draw.circle(screen, "White", [WSLocationsW[j-1]+10+12*j, WSLocationsH[j-1]-5], 5)
+            if SPassenagers[i][j]==3:
+                pg.draw.circle(screen, "White", [WSLocationsW[i]+20+j*12, WSLocationsH[i]-5], 5)
+            elif SPassenagers[i][j]==2:
+                pg.draw.rect(screen, 'White', (WSLocationsW[i]+15+j*12, WSLocationsH[i]-2, 10, 10))
+            elif SPassenagers[i][j]==1:
+                pg.draw.polygon(screen, "White", ([WSLocationsW[i]+18+j*12, WSLocationsH[i]-2], [WSLocationsW[i]+12+j*12, WSLocationsH[i]+5], [WSLocationsW[i]+24+j*12, WSLocationsH[i]+5]))
+            elif SPassenagers[i][j]==0:
+                pg.draw.polygon(screen, "White",([WSLocationsW[i]+18+j*12, WSLocationsH[i]-4], [WSLocationsW[i]+12+j*12, WSLocationsH[i]+1], [WSLocationsW[i]+18+j*12, WSLocationsH[i]+6], [WSLocationsW[i]+24+j*12, WSLocationsH[i]+1]))
     
-
-    
-
     pg.display.update()
     clock.tick(60)   
