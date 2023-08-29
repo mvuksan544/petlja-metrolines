@@ -7,8 +7,8 @@ backgroundcolor=((0, 10, 30))
 
 running=True
 
-WIDTH=1920
-HEIGHT=1080
+WIDTH=1280
+HEIGHT=720
 timer=1
 screen=pg.display.set_mode((WIDTH, HEIGHT))
 
@@ -109,10 +109,7 @@ timecounter=0
 line_selected=-1
 while running:
     
-    while len(STimer)>=len(WSLocationsH):
-        if len(STimer)>0:
-            for el in STimer:
-                el+=1
+
     
     
 
@@ -534,6 +531,13 @@ while running:
     elif line_selected==0 and len(line0)>0:
         pos2=pg.mouse.get_pos()
         pg.draw.lines(screen, LPicker[0], False, (line0[len(line0)-1],[line0[len(line0)-1][0], pos2[1]], pos2 ), 5)
+
+
+
+    while len(STimer)<=len(WSLocationsH):
+        STimer.append(1)
+    for k in range (len(STimer)):
+        STimer[k]+=1
         
         
     #passenager spawning
@@ -541,15 +545,24 @@ while running:
     for i in range(len(WSLocationsH)):
         if STimer[i]>300:
             a=randint(0, 4)
+            STimer[i]=0
+            
             if SPassenagers[i][0]!=a:
                 SPassenagers[i].append(a)
+                print(SPassenagers)
                 
-    #Passenager on station drawing
-        for i in range (len(WSLocationsH)):
-            if SPassenagers[i][0]:
-                for i in range(1, len(SPassenagers[i])):
-                    pg.draw.lines(screen, "White", True, ([WSLocationsW[i]+i*20, WSLocationsH[i]],[WSLocationsW[i]+i*20-5, WSLocationsH[i]+5], [WSLocationsW[i]+i*20, WSLocationsH[i]+7], [WSLocationsW[i]+i*20+5, WSLocationsH[i]-5]))
-            
+
+    #Passenager on station drawing      Milose pls
+    for i in range (len(WSLocationsH)):
+        if SPassenagers[i][0]==0:
+            pass
+            #for j in range(1, len(SPassenagers[i])):
+                #pg.draw.lines(screen, "White", True, ([WSLocationsW[j-1]+j*20, WSLocationsH[j-1]],[WSLocationsW[j-1]+j*20-5, WSLocationsH[j-1]+5], [WSLocationsW[j-1]+i*20, WSLocationsH[j-1]+7], [WSLocationsW[j-1]+j*20+5, WSLocationsH[j-1]-5]))
+        for j in range(1, len(SPassenagers[i])):
+            if SPassenagers[j][0]==3:
+                pg.draw.circle(screen, "White", [WSLocationsW[j-1]+10+12*j, WSLocationsH[j-1]-5], 5)
+    
+
     
 
     pg.display.update()
