@@ -7,8 +7,8 @@ backgroundcolor=((0, 10, 30))
 
 running=True
 
-WIDTH=1440
-HEIGHT=900
+WIDTH=1920
+HEIGHT=1080
 timer=1
 screen=pg.display.set_mode((WIDTH, HEIGHT))
 
@@ -22,7 +22,8 @@ CSLocationsH=[]
 CSLocationsW=[]
 WSLocationsH=[]
 WSLocationsW=[]
-
+SPassenagers=[]
+STimer=[]
 
 SLocationsW=[WIDTH//4, WIDTH//7, WIDTH//7, WIDTH//5*4, WIDTH//3*2, WIDTH//8*6, WIDTH//6*5]
 SLocationsH=[HEIGHT//5*2, HEIGHT//3*2, HEIGHT//7, HEIGHT//2, HEIGHT//8*3, HEIGHT//7*2, HEIGHT//7*5 ]
@@ -47,6 +48,17 @@ WSLocationsW.append(WIDTH//3*2)
 WSLocationsW.append(WIDTH//3)
 WSLocationsW.append(WIDTH//2)
 
+SPassenagers.append([0])
+SPassenagers.append([1])
+SPassenagers.append([2])
+SPassenagers.append([3])
+
+#R=0
+#T=1
+#S=2
+#C=3
+
+
 
 LPicker=[[77, 247, 222],[240, 98, 98] , [125, 247, 77], [255, 252, 84], [239, 87, 250]]
 LUnlocked=[True, True, True, True, True]
@@ -67,32 +79,40 @@ Met0x=[]
 Met0y=[]
 Met0s=[]
 Met0st=[]
+Met0w=[]
 
 Met1x=[]
 Met1y=[]
 Met1s=[]
 Met1st=[]
+Met1w=[]
 
 Met2x=[]
 Met2y=[]
 Met2s=[]
 Met2st=[]
+Met2w=[]
 
 Met3x=[]
 Met3y=[]
 Met3s=[]
 Met3st=[]
+Met3w=[]
 
 Met4x=[]
 Met4y=[]
 Met4s=[]
 Met4st=[]
+Met4w=[]
 
-
-
+timecounter=0
 line_selected=-1
 while running:
     
+    while len(STimer)>=len(WSLocationsH):
+        if len(STimer)>0:
+            for el in STimer:
+                el+=1
     
     
 
@@ -126,6 +146,7 @@ while running:
                 CSLocationsW.append(SLocationsW[y])
                 WSLocationsH.append(SLocationsH[y]) 
                 WSLocationsW.append(SLocationsW[y])
+                SPassenagers.append([3])
                 SLocationsW.remove(SLocationsW[y]) 
                 SLocationsH.remove(SLocationsH[y])
             elif x == 1:
@@ -133,6 +154,7 @@ while running:
                 SSLocationsW.append(SLocationsW[y])
                 WSLocationsH.append(SLocationsH[y]) 
                 WSLocationsW.append(SLocationsW[y])
+                SPassenagers.append([2])
                 SLocationsW.remove(SLocationsW[y])                    
                 SLocationsH.remove(SLocationsH[y])
             elif x == 2:
@@ -140,6 +162,7 @@ while running:
                 TSLocationsW.append(SLocationsW[y])
                 WSLocationsH.append(SLocationsH[y]) 
                 WSLocationsW.append(SLocationsW[y])
+                SPassenagers.append([1])
                 SLocationsW.remove(SLocationsW[y])                    
                 SLocationsH.remove(SLocationsH[y])
             elif x == 3:
@@ -147,35 +170,67 @@ while running:
                 RSLocationsW.append(SLocationsW[y])
                 WSLocationsH.append(SLocationsH[y]) 
                 WSLocationsW.append(SLocationsW[y])
+                SPassenagers.append([0])
                 SLocationsW.remove(SLocationsW[y])                    
                 SLocationsH.remove(SLocationsH[y])
                 
     #Metro placement
     pg.draw.rect(screen, [150, 150, 150], (400, HEIGHT//10*9-20, 100, 40))    
-    if event.type==pg.MOUSEBUTTONDOWN:
+    if event.type==pg.MOUSEBUTTONDOWN and event.button==1:
         pos3=pg.mouse.get_pos()
-        if 400<pos3[0] and pos3[0]<500 and 40<pos3[1] and pos3[1]<HEIGHT//10*9+20:
+        if 400<pos3[0] and pos3[0]<500 and HEIGHT//10*9-20<pos3[1] and pos3[1]<HEIGHT//10*9+20:
             MetroPlace=True
-            for i in range(len(LPicker)):
+        for i in range(len(LPicker)):
                 if LUnlocked[i] and MetroPlace and abs(WIDTH//13*(5+i)-pos3[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos3[1])<=WIDTH//60:
                     line_selected1=i
-                    print(line_selected1)
                     if i == 0:
                         L0T+=1
                         Met0s.append(1)
                         Met0x.append(line0[0][0])
                         Met0y.append(line0[0][1])
                         Met0st.append(0)
+                        Met0w.append(True)
                         MetroPlace==False
+                        pg.time.delay(100)
+                    if i == 1:
+                        L0T+=1
+                        Met1s.append(1)
+                        Met1x.append(line1[0][0])
+                        Met1y.append(line1[0][1])
+                        Met1st.append(0)
+                        Met1w.append(True)
+                        pg.time.delay(100)
+                    if i == 2:
+                        L0T+=1
+                        Met2s.append(1)
+                        Met2x.append(line2[0][0])
+                        Met2y.append(line2[0][1])
+                        Met2st.append(0)
+                        Met2w.append(True)
+                        pg.time.delay(100)
+                    if i == 3:
+                        L0T+=1
+                        Met3s.append(1)
+                        Met3x.append(line3[0][0])
+                        Met3y.append(line3[0][1])
+                        Met3st.append(0)
+                        Met3w.append(True)
+                        pg.time.delay(100)
+                    if i == 4:
+                        L0T+=1
+                        Met4s.append(1)
+                        Met4x.append(line4[0][0])
+                        Met4y.append(line4[0][1])
+                        Met4st.append(0)
+                        Met4w.append(True)
+                        pg.time.delay(100)
+    if (event.type==pg.MOUSEBUTTONDOWN and event.button==3) and MetroPlace:
+        MetroPlace=False
+        
     if MetroPlace:
         pos4=pg.mouse.get_pos()
         pg.draw.rect(screen, (150, 150, 150,), (pos4[0]-40, pos4[1]-17, 80, 34))
           
-                
-                
-                
-                
-                
                 
     #line drawing            
                 
@@ -201,25 +256,227 @@ while running:
     if event.type==pg.MOUSEBUTTONDOWN and event.button == 1 :
         pos1=pg.mouse.get_pos()
         for i in range(len(LPicker)):
-            if LUnlocked[i] and abs(WIDTH//13*(5+i)-pos1[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos1[1])<=WIDTH//60:
+            if LUnlocked[i] and MetroPlace==False and abs(WIDTH//13*(5+i)-pos1[0])<=WIDTH//60 and abs(HEIGHT//10*9-pos1[1])<=WIDTH//60:
                 line_selected=i
         
     #metro movemant
     if len(line0)>0:
         for i in range(len(Met0y)):
-            if Met0x[i]<line0[Met0st[i]][0]:
-                Met0x[i]+=Met0s[i]
-            elif Met0x[i]>line0[Met0st[i]][0]:
-                Met0x[i]+=Met0s[i]
-            else:
+            if Met0w[i] == True:
                 if Met0y[i]<line0[Met0st[i]][1]:
                     Met0y[i]+=Met0s[i]
                 elif Met0y[i]>line0[Met0st[i]][1]:
-                    Met0y[i]+=Met0s[i]
+                    Met0y[i]-=Met0s[i]
                 else:
-                    Met0st[i]=Met0st[i]+1
+                    if Met0x[i]<line0[Met0st[i]][0]:
+                        Met0x[i]+=Met0s[i]
+                    elif Met0x[i]>line0[Met0st[i]][0]:
+                        Met0x[i]-=Met0s[i]
+                    else:
+                        if Met0st[i]==len(line0)-1:
+                            Met0w[i]=False
+                        elif Met0st[i]==0:
+                            Met0w[i]=True
+                        else:
+                            pass
+                        if Met0w[i]==True:
+                            Met0st[i]=Met0st[i]+1
+                        else:
+                            Met0st[i]=Met0st[i]-1
+            else:
+                if Met0x[i]<line0[Met0st[i]][0]:
+                    Met0x[i]+=Met0s[i]
+                elif Met0x[i]>line0[Met0st[i]][0]:
+                    Met0x[i]-=Met0s[i]
+                else:
+                    if Met0y[i]<line0[Met0st[i]][1]:
+                        Met0y[i]+=Met0s[i]
+                    elif Met0y[i]>line0[Met0st[i]][1]:
+                        Met0y[i]-=Met0s[i]
+                    else:
+                        if Met0st[i]==len(line0)-1:
+                            Met0w[i]=False
+                        elif Met0st[i]==0:
+                            Met0w[i]=True
+                        if Met0w[i]==True:
+                            Met0st[i]=Met0st[i]+1
+                        else:
+                            Met0st[i]=Met0st[i]-1
+                
     for i in range (len(Met0x)):
-        pg.draw.rect(screen, LPicker[0], (Met0x[i], Met0y[i], 10, 10))
+        pg.draw.rect(screen, LPicker[0], (Met0x[i]-10, Met0y[i]-10, 20, 20))
+    if len(line1)>0:
+        for i in range(len(Met1y)):
+            if Met1w[i]:
+                if Met1y[i]<line1[Met1st[i]][1]:
+                    Met1y[i]+=Met1s[i]
+                elif Met1y[i]>line1[Met1st[i]][1]:
+                    Met1y[i]-=Met1s[i]
+                else:
+                    if Met1x[i]<line1[Met1st[i]][0]:
+                        Met1x[i]+=Met1s[i]
+                    elif Met1x[i]>line1[Met1st[i]][0]:
+                        Met1x[i]-=Met1s[i]
+                    else:
+                        if Met1st[i]==len(line1)-1:
+                            Met1w[i]=False
+                        elif Met1st[i]==0:
+                            Met1w[i]=True
+                        if Met1w[i]==True:
+                            Met1st[i]=Met1st[i]+1
+                        else:
+                            Met1st[i]=Met1st[i]-1
+            else:
+                if Met1x[i]<line1[Met1st[i]][0]:
+                    Met1x[i]+=Met1s[i]
+                elif Met1x[i]>line1[Met1st[i]][0]:
+                    Met1x[i]-=Met1s[i]
+                else:
+                    if Met1y[i]<line1[Met1st[i]][1]:
+                        Met1y[i]+=Met1s[i]
+                    elif Met1y[i]>line1[Met1st[i]][1]:
+                        Met1y[i]-=Met1s[i]
+                    else:
+                        if Met1st[i]==len(line1)-1:
+                            Met1w[i]=False
+                        elif Met1st[i]==0:
+                            Met1w[i]=True
+                        if Met1w[i]==True:
+                            Met1st[i]=Met1st[i]+1
+                        else:
+                            Met1st[i]=Met1st[i]-1
+    for i in range (len(Met1x)):
+        pg.draw.rect(screen, LPicker[1], (Met1x[i]-10, Met1y[i]-10, 20, 20))
+    if len(line2)>0:
+        for i in range(len(Met2y)):
+            if Met2w[i]:
+                if Met2y[i]<line2[Met2st[i]][1]:
+                    Met2y[i]+=Met2s[i]
+                elif Met2y[i]>line2[Met2st[i]][1]:
+                    Met2y[i]-=Met2s[i]
+                else:
+                    if Met2x[i]<line2[Met2st[i]][0]:
+                        Met2x[i]+=Met2s[i]
+                    elif Met2x[i]>line2[Met2st[i]][0]:
+                        Met2x[i]-=Met2s[i]
+                    else:
+                        if Met2st[i]==len(line2)-1:
+                            Met2w[i]=False
+                        elif Met2st[i]==0:
+                            Met2w[i]=True
+                        if Met2w[i]==True:
+                            Met2st[i]=Met2st[i]+1
+                        else:
+                            Met2st[i]=Met2st[i]-1
+            else:
+                if Met2x[i]<line2[Met2st[i]][0]:
+                    Met2x[i]+=Met2s[i]
+                elif Met2x[i]>line2[Met2st[i]][0]:
+                    Met2x[i]-=Met2s[i]
+                else:
+                    if Met2y[i]<line2[Met2st[i]][1]:
+                        Met2y[i]+=Met2s[i]
+                    elif Met2y[i]>line2[Met2st[i]][1]:
+                        Met2y[i]-=Met2s[i]
+                    else:
+                        if Met2st[i]==len(line2)-1:
+                            Met2w[i]=False
+                        elif Met2st[i]==0:
+                            Met2w[i]=True
+                        if Met2w[i]==True:
+                            Met2st[i]=Met2st[i]+1
+                        else:
+                            Met2st[i]=Met2st[i]-1
+    for i in range (len(Met2x)):
+        pg.draw.rect(screen, LPicker[2], (Met2x[i]-10, Met2y[i]-10, 20, 20))
+    if len(line3)>0:
+        for i in range(len(Met3y)):
+            if Met3w[i]:
+                if Met3y[i]<line3[Met3st[i]][1]:
+                    Met3y[i]+=Met3s[i]
+                elif Met3y[i]>line3[Met3st[i]][1]:
+                    Met3y[i]-=Met3s[i]
+                else:
+                    if Met3x[i]<line3[Met3st[i]][0]:
+                        Met3x[i]+=Met3s[i]
+                    elif Met3x[i]>line3[Met3st[i]][0]:
+                        Met3x[i]-=Met3s[i]
+                    else:
+                        if Met3st[i]==len(line3)-1:
+                            Met3w[i]=False
+                        elif Met3st[i]==0:
+                            Met3w[i]=True
+                        if Met3w[i]==True:
+                            Met3st[i]=Met3st[i]+1
+                        else:
+                            Met3st[i]=Met3st[i]-1
+            else:
+                if Met3x[i]<line3[Met3st[i]][0]:
+                    Met3x[i]+=Met3s[i]
+                elif Met3x[i]>line3[Met3st[i]][0]:
+                    Met3x[i]-=Met3s[i]
+                else:
+                    if Met3y[i]<line3[Met3st[i]][1]:
+                        Met3y[i]+=Met3s[i]
+                    elif Met3y[i]>line3[Met3st[i]][1]:
+                        Met3y[i]-=Met3s[i]
+                    else:
+                        if Met3st[i]==len(line3)-1:
+                            Met3w[i]=False
+                        elif Met3st[i]==0:
+                            Met3w[i]=True
+                        if Met3w[i]==True:
+                            Met3st[i]=Met3st[i]+1
+                        else:
+                            Met3st[i]=Met3st[i]-1
+        
+    for i in range (len(Met3x)):
+        pg.draw.rect(screen, LPicker[3], (Met3x[i]-10, Met3y[i]-10, 20, 20))
+
+    if len(line4)>0:
+        for i in range(len(Met4y)):
+            if Met4w[i]:
+                if Met4y[i]<line4[Met4st[i]][1]:
+                    Met4y[i]+=Met4s[i]
+                elif Met4y[i]>line4[Met4st[i]][1]:
+                    Met4y[i]-=Met4s[i]
+                else:
+                    if Met4x[i]<line4[Met4st[i]][0]:
+                        Met4x[i]+=Met4s[i]
+                    elif Met4x[i]>line4[Met4st[i]][0]:
+                        Met4x[i]-=Met4s[i]
+                    else:
+                        if Met4st[i]==len(line4)-1:
+                            Met4w[i]=False
+                        elif Met4st[i]==0:
+                            Met4w[i]=True
+                        if Met4w[i]==True:
+                            Met4st[i]=Met4st[i]+1
+                        else:
+                            Met4st[i]=Met4st[i]-1
+            else:
+                if Met4x[i]<line4[Met4st[i]][0]:
+                    Met4x[i]+=Met4s[i]
+                elif Met4x[i]>line4[Met4st[i]][0]:
+                    Met4x[i]-=Met4s[i]
+                else:
+                    if Met4y[i]<line4[Met4st[i]][1]:
+                        Met4y[i]+=Met4s[i]
+                    elif Met4y[i]>line4[Met4st[i]][1]:
+                        Met4y[i]-=Met4s[i]
+                    else:
+                        if Met4st[i]==len(line4)-1:
+                            Met4w[i]=False
+                        elif Met4st[i]==0:
+                            Met4w[i]=True
+                        if Met4w[i]==True:
+                            Met4st[i]=Met4st[i]+1
+                        else:
+                            Met4st[i]=Met4st[i]-1
+        for i in range (len(Met4x)):
+            pg.draw.rect(screen, LPicker[4], (Met4x[i]-10, Met4y[i]-10, 20, 20))
+    
+    
         
           
                 
@@ -277,6 +534,23 @@ while running:
     elif line_selected==0 and len(line0)>0:
         pos2=pg.mouse.get_pos()
         pg.draw.lines(screen, LPicker[0], False, (line0[len(line0)-1],[line0[len(line0)-1][0], pos2[1]], pos2 ), 5)
+        
+        
+    #passenager spawning
+
+    for i in range(len(WSLocationsH)):
+        if STimer[i]>300:
+            a=randint(0, 4)
+            if SPassenagers[i][0]!=a:
+                SPassenagers[i].append(a)
+                
+    #Passenager on station drawing
+        for i in range (len(WSLocationsH)):
+            if SPassenagers[i][0]:
+                for i in range(1, len(SPassenagers[i])):
+                    pg.draw.lines(screen, "White", True, ([WSLocationsW[i]+i*20, WSLocationsH[i]],[WSLocationsW[i]+i*20-5, WSLocationsH[i]+5], [WSLocationsW[i]+i*20, WSLocationsH[i]+7], [WSLocationsW[i]+i*20+5, WSLocationsH[i]-5]))
+            
+    
 
     pg.display.update()
     clock.tick(60)   
