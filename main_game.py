@@ -6,7 +6,6 @@ clock=pg.time.Clock()
 backgroundcolor=((0, 10, 30))
 
 running=True
-
 WIDTH=1920
 HEIGHT=1080
 timer=1
@@ -80,31 +79,35 @@ Met0y=[]
 Met0s=[]
 Met0st=[]
 Met0w=[]
+Met0p=[]
 
 Met1x=[]
 Met1y=[]
 Met1s=[]
 Met1st=[]
 Met1w=[]
+Met1p=[]
 
 Met2x=[]
 Met2y=[]
 Met2s=[]
 Met2st=[]
 Met2w=[]
+Met2p=[]
 
 Met3x=[]
 Met3y=[]
 Met3s=[]
 Met3st=[]
 Met3w=[]
+Met3p=[]
 
 Met4x=[]
 Met4y=[]
 Met4s=[]
 Met4st=[]
 Met4w=[]
-
+Met4p=[]
 timecounter=0
 line_selected=-1
 while running:
@@ -187,7 +190,7 @@ while running:
                         Met0y.append(line0[0][1])
                         Met0st.append(0)
                         Met0w.append(True)
-                        MetroPlace==False
+                        Met0p.append([])
                         pg.time.delay(100)
                     if i == 1:
                         L0T+=1
@@ -196,6 +199,7 @@ while running:
                         Met1y.append(line1[0][1])
                         Met1st.append(0)
                         Met1w.append(True)
+                        Met1p.append([])
                         pg.time.delay(100)
                     if i == 2:
                         L0T+=1
@@ -204,6 +208,7 @@ while running:
                         Met2y.append(line2[0][1])
                         Met2st.append(0)
                         Met2w.append(True)
+                        Met2p.append([])
                         pg.time.delay(100)
                     if i == 3:
                         L0T+=1
@@ -212,6 +217,7 @@ while running:
                         Met3y.append(line3[0][1])
                         Met3st.append(0)
                         Met3w.append(True)
+                        Met3p.append([])
                         pg.time.delay(100)
                     if i == 4:
                         L0T+=1
@@ -220,6 +226,7 @@ while running:
                         Met4y.append(line4[0][1])
                         Met4st.append(0)
                         Met4w.append(True)
+                        Met4p.append([])
                         pg.time.delay(100)
     if (event.type==pg.MOUSEBUTTONDOWN and event.button==3) and MetroPlace:
         MetroPlace=False
@@ -301,7 +308,7 @@ while running:
                             Met0st[i]=Met0st[i]-1
                 
     for i in range (len(Met0x)):
-        pg.draw.rect(screen, LPicker[0], (Met0x[i]-10, Met0y[i]-10, 20, 20))
+        pg.draw.rect(screen, LPicker[0], (Met0x[i]-15, Met0y[i]-15, 30, 30))
     if len(line1)>0:
         for i in range(len(Met1y)):
             if Met1w[i]:
@@ -343,7 +350,7 @@ while running:
                         else:
                             Met1st[i]=Met1st[i]-1
     for i in range (len(Met1x)):
-        pg.draw.rect(screen, LPicker[1], (Met1x[i]-10, Met1y[i]-10, 20, 20))
+        pg.draw.rect(screen, LPicker[1], (Met1x[i]-15, Met1y[i]-15, 30, 30))
     if len(line2)>0:
         for i in range(len(Met2y)):
             if Met2w[i]:
@@ -385,7 +392,7 @@ while running:
                         else:
                             Met2st[i]=Met2st[i]-1
     for i in range (len(Met2x)):
-        pg.draw.rect(screen, LPicker[2], (Met2x[i]-10, Met2y[i]-10, 20, 20))
+        pg.draw.rect(screen, LPicker[2], (Met2x[i]-15, Met2y[i]-15, 30, 30))
     if len(line3)>0:
         for i in range(len(Met3y)):
             if Met3w[i]:
@@ -428,7 +435,7 @@ while running:
                             Met3st[i]=Met3st[i]-1
         
     for i in range (len(Met3x)):
-        pg.draw.rect(screen, LPicker[3], (Met3x[i]-10, Met3y[i]-10, 20, 20))
+        pg.draw.rect(screen, LPicker[3], (Met3x[i]-15, Met3y[i]-15, 30, 30))
 
     if len(line4)>0:
         for i in range(len(Met4y)):
@@ -471,7 +478,7 @@ while running:
                         else:
                             Met4st[i]=Met4st[i]-1
         for i in range (len(Met4x)):
-            pg.draw.rect(screen, LPicker[4], (Met4x[i]-10, Met4y[i]-10, 20, 20))
+            pg.draw.rect(screen, LPicker[4], (Met4x[i]-15, Met4y[i]-15, 30, 30))
     
     
         
@@ -549,20 +556,304 @@ while running:
             
             if SPassenagers[i][0]!=a:
                 SPassenagers[i].append(a)
-                print(SPassenagers)
                 
 
-    #Passengers on station drawing      Milose pls
+    #Passengers on station drawing
     for i in range (len(SPassenagers)):
         for j in range(1, len(SPassenagers[i])):
             if SPassenagers[i][j]==3:
-                pg.draw.circle(screen, "White", [WSLocationsW[i]+20+j*12, WSLocationsH[i]-5], 5)
+                pg.draw.circle(screen, "White", [WSLocationsW[i]+20+j*12, WSLocationsH[i]], 5)
             elif SPassenagers[i][j]==2:
-                pg.draw.rect(screen, 'White', (WSLocationsW[i]+15+j*12, WSLocationsH[i]-2, 10, 10))
+                pg.draw.rect(screen, 'White', (WSLocationsW[i]+20+j*12, WSLocationsH[i]-2, 10, 10))
             elif SPassenagers[i][j]==1:
                 pg.draw.polygon(screen, "White", ([WSLocationsW[i]+18+j*12, WSLocationsH[i]-2], [WSLocationsW[i]+12+j*12, WSLocationsH[i]+5], [WSLocationsW[i]+24+j*12, WSLocationsH[i]+5]))
             elif SPassenagers[i][j]==0:
-                pg.draw.polygon(screen, "White",([WSLocationsW[i]+18+j*12, WSLocationsH[i]-4], [WSLocationsW[i]+12+j*12, WSLocationsH[i]+1], [WSLocationsW[i]+18+j*12, WSLocationsH[i]+6], [WSLocationsW[i]+24+j*12, WSLocationsH[i]+1]))
+                pg.draw.polygon(screen, "White",([WSLocationsW[i]+22+j*12, WSLocationsH[i]-4], [WSLocationsW[i]+16+j*12, WSLocationsH[i]+1], [WSLocationsW[i]+22+j*12, WSLocationsH[i]+6], [WSLocationsW[i]+28+j*12, WSLocationsH[i]+1]))
+    #Passenager leaving
+    for i in range (len(WSLocationsH)):
+        for j in range(len(Met0x)):
+            if WSLocationsW[i]==Met0x[j] and WSLocationsH[i]==Met0y[j]:
+                for x in range(len(Met0p[j])):
+                    if x<len(Met0p[j]):
+                        if Met0p[j][x]==SPassenagers[i][0]:
+                            Met0p[j].pop(x)
+        for j in range(len(Met1x)):
+            if WSLocationsW[i]==Met1x[j] and WSLocationsH[i]==Met1y[j]:
+                for x in range(len(Met1p[j])):
+                    if x<len(Met1p[j]):
+                        if Met1p[j][x]==SPassenagers[i][0]:
+                            Met1p[j].pop(x)
+        for j in range(len(Met2x)):
+            if WSLocationsW[i]==Met2x[j] and WSLocationsH[i]==Met2y[j]:
+                for x in range(len(Met2p[j])):
+                    if x<len(Met2p[j]):
+                        if Met2p[j][x]==SPassenagers[i][0]:
+                            Met2p[j].pop(x)
+        for j in range(len(Met2x)):
+            if WSLocationsW[i]==Met2x[j] and WSLocationsH[i]==Met2y[j]:
+                for x in range(len(Met2p[j])):
+                    if x<len(Met2p[j]):
+                        if Met2p[j][x]==SPassenagers[i][0]:
+                            Met2p[j].pop(x)
+        for j in range(len(Met3x)):
+            if WSLocationsW[i]==Met3x[j] and WSLocationsH[i]==Met3y[j]:
+                for x in range(len(Met3p[j])):
+                    if x<len(Met3p[j]):
+                        if Met3p[j][x]==SPassenagers[i][0]:
+                            Met3p[j].pop(x)
+        for j in range(len(Met4x)):
+            if WSLocationsW[i]==Met4x[j] and WSLocationsH[i]==Met4y[j]:
+                for x in range(len(Met4p[j])):
+                    if x<len(Met4p[j]):
+                        if Met4p[j][x]==SPassenagers[i][0]:
+                            Met4p[j].pop(x)
+    #Passenager boarding
+    for i in range (len(WSLocationsH)):
+        for j in range(len(Met0x)):
+            if WSLocationsW[i]==Met0x[j] and WSLocationsH[i]==Met0y[j]:
+                for x in range(4):
+
+                    if len(SPassenagers[i])>1 and len(Met0p[j])<=4:
+                        Met0p[j].append(SPassenagers[i][len(SPassenagers[i])-1])                       
+                        SPassenagers[i].pop(len(SPassenagers[i])-1)
+        for j in range(len(Met1x)):
+            if WSLocationsW[i]==Met1x[j] and WSLocationsH[i]==Met1y[j]:
+                for x in range(4):
+
+                    if len(SPassenagers[i])>1 and len(Met1p[j])<=4:
+                        Met1p[j].append(SPassenagers[i][len(SPassenagers[i])-1])                       
+                        SPassenagers[i].pop(len(SPassenagers[i])-1)
+        for j in range(len(Met2x)):
+            if WSLocationsW[i]==Met2x[j] and WSLocationsH[i]==Met2y[j]:
+                for x in range(4):
+
+                    if len(SPassenagers[i])>1 and len(Met2p[j])<=4:
+                        Met2p[j].append(SPassenagers[i][len(SPassenagers[i])-1])                       
+                        SPassenagers[i].pop(len(SPassenagers[i])-1)
+        for j in range(len(Met3x)):
+            if WSLocationsW[i]==Met3x[j] and WSLocationsH[i]==Met3y[j]:
+                for x in range(4):
+
+                    if len(SPassenagers[i])>1 and len(Met3p[j])<=4:
+                        Met3p[j].append(SPassenagers[i][len(SPassenagers[i])-1])                       
+                        SPassenagers[i].pop(len(SPassenagers[i])-1)
+        for j in range(len(Met4x)):
+            if WSLocationsW[i]==Met4x[j] and WSLocationsH[i]==Met4y[j]:
+                for x in range(4):
+
+                    if len(SPassenagers[i])>1 and len(Met4p[j])<=4:
+                        Met4p[j].append(SPassenagers[i][len(SPassenagers[i])-1])                       
+                        SPassenagers[i].pop(len(SPassenagers[i])-1)
+
+
+    #Passenager in metro drawing
+    for j in range (len(Met0p)):
+        for i in range(len(Met0p[j])):
+            if i==0:
+                if Met0p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met0x[j]-6, Met0y[j]-6], 5)
+                elif  Met0p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met0x[j]-11, Met0y[j]-11, 10, 10))
+                elif  Met0p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]-6, Met0y[j]-11], [Met0x[j]-11, Met0y[j]-1], [Met0x[j]-1, Met0y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]-6, Met0y[j]-11], [Met0x[j]-11, Met0y[j]-6], [Met0x[j]-6, Met0y[j]-1], [Met0x[j]-1, Met0y[j]-6]))
+                
+            elif i == 1:
+                if Met0p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met0x[j]+6, Met0y[j]-6], 5)
+                elif  Met0p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met0x[j]+1, Met0y[j]-11, 10, 10))
+                elif  Met0p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]+6, Met0y[j]-11], [Met0x[j]+1, Met0y[j]-1], [Met0x[j]+11, Met0y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]+6, Met0y[j]-11], [Met0x[j]+1, Met0y[j]-6], [Met0x[j]+6, Met0y[j]-1], [Met0x[j]+11, Met0y[j]-6]))
+                
+            elif i == 2:
+                if Met0p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met0x[j]-6, Met0y[j]+6], 5)
+                elif  Met0p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met0x[j]-11, Met0y[j]+1, 10, 10))
+                elif  Met0p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]-6, Met0y[j]+1], [Met0x[j]-11, Met0y[j]+11], [Met0x[j]-1, Met0y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]-6, Met0y[j]+1], [Met0x[j]-11, Met0y[j]+6], [Met0x[j]-6, Met0y[j]+11], [Met0x[j]-1, Met0y[j]+6]))
+            elif i==3:
+                if Met0p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met0x[j]+6, Met0y[j]+6], 5)
+                elif  Met0p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met0x[j]+1, Met0y[j]+1, 10, 10))
+                elif  Met0p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]+6, Met0y[j]+1], [Met0x[j]+1, Met0y[j]+11], [Met0x[j]+11, Met0y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met0x[j]+6, Met0y[j]+1], [Met0x[j]+1, Met0y[j]+6], [Met0x[j]+6, Met0y[j]+11], [Met0x[j]+11, Met0y[j]+6]))
+    for j in range (len(Met1p)):
+        for i in range(len(Met1p[j])):
+            if i==0:
+                if Met1p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met1x[j]-6, Met1y[j]-6], 5)
+                elif  Met1p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met1x[j]-11, Met1y[j]-11, 10, 10))
+                elif  Met1p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]-6, Met1y[j]-11], [Met1x[j]-11, Met1y[j]-1], [Met1x[j]-1, Met1y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]-6, Met1y[j]-11], [Met1x[j]-11, Met1y[j]-6], [Met1x[j]-6, Met1y[j]-1], [Met1x[j]-1, Met1y[j]-6]))
+                
+            elif i == 1:
+                if Met1p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met1x[j]+6, Met1y[j]-6], 5)
+                elif  Met1p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met1x[j]+1, Met1y[j]-11, 10, 10))
+                elif  Met1p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]+6, Met1y[j]-11], [Met1x[j]+1, Met1y[j]-1], [Met1x[j]+11, Met1y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]+6, Met1y[j]-11], [Met1x[j]+1, Met1y[j]-6], [Met1x[j]+6, Met1y[j]-1], [Met1x[j]+11, Met1y[j]-6]))
+                
+            elif i == 2:
+                if Met1p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met1x[j]-6, Met1y[j]+6], 5)
+                elif  Met1p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met1x[j]-11, Met1y[j]+1, 10, 10))
+                elif  Met1p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]-6, Met1y[j]+1], [Met1x[j]-11, Met1y[j]+11], [Met1x[j]-1, Met1y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]-6, Met1y[j]+1], [Met1x[j]-11, Met1y[j]+6], [Met1x[j]-6, Met1y[j]+11], [Met1x[j]-1, Met1y[j]+6]))
+            elif i==3:
+                if Met1p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met1x[j]+6, Met1y[j]+6], 5)
+                elif  Met1p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met1x[j]+1, Met1y[j]+1, 10, 10))
+                elif  Met1p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]+6, Met1y[j]+1], [Met1x[j]+1, Met1y[j]+11], [Met1x[j]+11, Met1y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met1x[j]+6, Met1y[j]+1], [Met1x[j]+1, Met1y[j]+6], [Met1x[j]+6, Met1y[j]+11], [Met1x[j]+11, Met1y[j]+6]))
+                                    
+    for j in range (len(Met2p)):
+        for i in range(len(Met2p[j])):
+            if i==0:
+                if Met2p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met2x[j]-6, Met2y[j]-6], 5)
+                elif  Met2p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met2x[j]-11, Met2y[j]-11, 10, 10))
+                elif  Met2p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]-6, Met2y[j]-11], [Met2x[j]-11, Met2y[j]-1], [Met2x[j]-1, Met2y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]-6, Met2y[j]-11], [Met2x[j]-11, Met2y[j]-6], [Met2x[j]-6, Met2y[j]-1], [Met2x[j]-1, Met2y[j]-6]))
+                
+            elif i == 1:
+                if Met2p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met2x[j]+6, Met2y[j]-6], 5)
+                elif  Met2p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met2x[j]+1, Met2y[j]-11, 10, 10))
+                elif  Met2p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]+6, Met2y[j]-11], [Met2x[j]+1, Met2y[j]-1], [Met2x[j]+11, Met2y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]+6, Met2y[j]-11], [Met2x[j]+1, Met2y[j]-6], [Met2x[j]+6, Met2y[j]-1], [Met2x[j]+11, Met2y[j]-6]))
+                
+            elif i == 2:
+                if Met2p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met2x[j]-6, Met2y[j]+6], 5)
+                elif  Met2p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met2x[j]-11, Met2y[j]+1, 10, 10))
+                elif  Met2p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]-6, Met2y[j]+1], [Met2x[j]-11, Met2y[j]+11], [Met2x[j]-1, Met2y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]-6, Met2y[j]+1], [Met2x[j]-11, Met2y[j]+6], [Met2x[j]-6, Met2y[j]+11], [Met2x[j]-1, Met2y[j]+6]))
+            elif i==3:
+                if Met2p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met2x[j]+6, Met2y[j]+6], 5)
+                elif  Met2p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met2x[j]+1, Met2y[j]+1, 10, 10))
+                elif  Met2p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]+6, Met2y[j]+1], [Met2x[j]+1, Met2y[j]+11], [Met2x[j]+11, Met2y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met2x[j]+6, Met2y[j]+1], [Met2x[j]+1, Met2y[j]+6], [Met2x[j]+6, Met2y[j]+11], [Met2x[j]+11, Met2y[j]+6]))
+    for j in range (len(Met3p)):
+        for i in range(len(Met3p[j])):
+            if i==0:
+                if Met3p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met3x[j]-6, Met3y[j]-6], 5)
+                elif  Met3p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met3x[j]-11, Met3y[j]-11, 10, 10))
+                elif  Met3p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]-6, Met3y[j]-11], [Met3x[j]-11, Met3y[j]-1], [Met3x[j]-1, Met3y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]-6, Met3y[j]-11], [Met3x[j]-11, Met3y[j]-6], [Met3x[j]-6, Met3y[j]-1], [Met3x[j]-1, Met3y[j]-6]))
+                
+            elif i == 1:
+                if Met3p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met3x[j]+6, Met3y[j]-6], 5)
+                elif  Met3p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met3x[j]+1, Met3y[j]-11, 10, 10))
+                elif  Met3p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]+6, Met3y[j]-11], [Met3x[j]+1, Met3y[j]-1], [Met3x[j]+11, Met3y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]+6, Met3y[j]-11], [Met3x[j]+1, Met3y[j]-6], [Met3x[j]+6, Met3y[j]-1], [Met3x[j]+11, Met3y[j]-6]))
+                
+            elif i == 2:
+                if Met3p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met3x[j]-6, Met3y[j]+6], 5)
+                elif  Met3p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met3x[j]-11, Met3y[j]+1, 10, 10))
+                elif  Met3p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]-6, Met3y[j]+1], [Met3x[j]-11, Met3y[j]+11], [Met3x[j]-1, Met3y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]-6, Met3y[j]+1], [Met3x[j]-11, Met3y[j]+6], [Met3x[j]-6, Met3y[j]+11], [Met3x[j]-1, Met3y[j]+6]))
+            elif i==3:
+                if Met3p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met3x[j]+6, Met3y[j]+6], 5)
+                elif  Met3p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met3x[j]+1, Met3y[j]+1, 10, 10))
+                elif  Met3p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]+6, Met3y[j]+1], [Met3x[j]+1, Met3y[j]+11], [Met3x[j]+11, Met3y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met3x[j]+6, Met3y[j]+1], [Met3x[j]+1, Met3y[j]+6], [Met3x[j]+6, Met3y[j]+11], [Met3x[j]+11, Met3y[j]+6]))
+           
+    for j in range (len(Met4p)):
+        for i in range(len(Met4p[j])):
+            if i==0:
+                if Met4p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met4x[j]-6, Met4y[j]-6], 5)
+                elif  Met4p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met4x[j]-11, Met4y[j]-11, 10, 10))
+                elif  Met4p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]-6, Met4y[j]-11], [Met4x[j]-11, Met4y[j]-1], [Met4x[j]-1, Met4y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]-6, Met4y[j]-11], [Met4x[j]-11, Met4y[j]-6], [Met4x[j]-6, Met4y[j]-1], [Met4x[j]-1, Met4y[j]-6]))
+                
+            elif i == 1:
+                if Met4p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met4x[j]+6, Met4y[j]-6], 5)
+                elif  Met4p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met4x[j]+1, Met4y[j]-11, 10, 10))
+                elif  Met4p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]+6, Met4y[j]-11], [Met4x[j]+1, Met4y[j]-1], [Met4x[j]+11, Met4y[j]-1]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]+6, Met4y[j]-11], [Met4x[j]+1, Met4y[j]-6], [Met4x[j]+6, Met4y[j]-1], [Met4x[j]+11, Met4y[j]-6]))
+                
+            elif i == 2:
+                if Met4p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met4x[j]-6, Met4y[j]+6], 5)
+                elif  Met4p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met4x[j]-11, Met4y[j]+1, 10, 10))
+                elif  Met4p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]-6, Met4y[j]+1], [Met4x[j]-11, Met4y[j]+11], [Met4x[j]-1, Met4y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]-6, Met4y[j]+1], [Met4x[j]-11, Met4y[j]+6], [Met4x[j]-6, Met4y[j]+11], [Met4x[j]-1, Met4y[j]+6]))
+            elif i==3:
+                if Met4p[j][i]==3:
+                    pg.draw.circle(screen, "White", [Met4x[j]+6, Met4y[j]+6], 5)
+                elif  Met4p[j][i]==2:
+                    pg.draw.rect(screen, "White", (Met4x[j]+1, Met4y[j]+1, 10, 10))
+                elif  Met4p[j][i]==1:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]+6, Met4y[j]+1], [Met4x[j]+1, Met4y[j]+11], [Met4x[j]+11, Met4y[j]+11]))
+                else:
+                    pg.draw.polygon(screen, "White", ([Met4x[j]+6, Met4y[j]+1], [Met4x[j]+1, Met4y[j]+6], [Met4x[j]+6, Met4y[j]+11], [Met4x[j]+11, Met4y[j]+6]))
+           
+
+                        
     
+                
+            
     pg.display.update()
     clock.tick(60)   

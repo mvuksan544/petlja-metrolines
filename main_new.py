@@ -247,7 +247,7 @@ def menu():
                     tyu6 = False
                     mtp=False
                     poption = 0
-                    with open("dejatestgame.py") as f:
+                    with open("main_game.py") as f:
                         exec(f.read())
         else:
             textng = fontng.render('New Game', True, whitec, bgcm)
