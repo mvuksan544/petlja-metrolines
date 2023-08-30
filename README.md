@@ -14,9 +14,6 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 * Game progression
 ![](https://geps.dev/progress/2)
 
-* Data structure
-![](https://geps.dev/progress/50)
-
 * Data saving system
 ![](https://geps.dev/progress/70)
 
@@ -30,6 +27,8 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 * Art
 
+* Data Structure
+
 # Complete Project Progress:
 
-![](https://geps.dev/progress/67)
+![](https://geps.dev/progress/84)
