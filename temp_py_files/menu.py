@@ -5,6 +5,7 @@ import sys
 from tkinter import *
 from tkinter import messagebox
 import time
+import fileinput
 source_path = Path(__file__).resolve()
 source_dir = source_path.parent
 os.chdir(source_dir)
@@ -14,11 +15,17 @@ lftpth = asspth+'\left_arrow.jpg'
 extpth = asspth+'\exit_arrow.jpg'
 dwnpth = asspth+'\down_arrow.jpg'
 savedtf = dirstr+'\Data\savedatacreated.txt'
+
+def replaceAll(file,searchExp,replaceExp):
+    for line in fileinput.input(file, inplace=1):
+        if searchExp in line:
+            line = line.replace(searchExp,replaceExp)
+        sys.stdout.write(line)
+
 with open(savedtf) as f:
     lines = f.readlines()
-print(lines[0])
 cgc = ('Gray')
-if lines[0]==True:
+if lines[0]=='True':
     cgc = ('White')
 pg.init()
 moption = 0
@@ -216,16 +223,30 @@ def menu():
                 mtp=False
         
         if pg.Rect.collidepoint(textRectng,(mx,my)) or poption==1:
-            print('radi select ng')
             textng = fontng.render('New Game', True, bgcm, whitec)   
             if event.type == pg.KEYDOWN:
                 keys = pg.key.get_pressed()
                 if keys[pg.K_RETURN]:
                     tyu6 = True
             if pg.mouse.get_pressed()[0]==True or tyu6==True:
-                tyu6 = False
-                mtp=False
-                poption = 0
+                if lines[0]=='True':
+                    questionsave = messagebox.askokcancel("Save data already exists","Are you sure you want to delete your save data?")
+                
+                if questionsave==False:
+                    tyu6 = False
+                
+                if questionsave==True:
+                    replaceAll(savedtf,"True","False")
+                    lines[0]='False'
+                    cgc = 'Gray'
+                    textcg = fontcg.render('Continue Game', True, cgc, bgcm)
+                
+                
+                if lines[0]=='False' or questionsave==True:
+                    
+                    tyu6 = False
+                    mtp=False
+                    poption = 0
                 #ubaciti Dekijev gejm function ovde
         else:
             textng = fontng.render('New Game', True, whitec, bgcm)
