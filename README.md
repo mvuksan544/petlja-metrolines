@@ -15,10 +15,10 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 ![](https://geps.dev/progress/2)
 
 * Data structure
-![](https://geps.dev/progress/30)
+![](https://geps.dev/progress/50)
 
 * Data saving system
-![](https://geps.dev/progress/0)
+![](https://geps.dev/progress/70)
 
 # Completed:
 
@@ -32,4 +32,4 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 # Complete Project Progress:
 
-![](https://geps.dev/progress/57)
+![](https://geps.dev/progress/67)
