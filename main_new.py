@@ -42,7 +42,7 @@ ty = HEIGHT-350
 ts = 30
 clock=pg.time.Clock()
 font = pg.font.Font('freesansbold.ttf',ts)
-text = font.render('krindz igrica ajfon juzera i mercedes fana', True, "White", backgroundcolor)
+text = font.render('Petlja Metrolines', True, "White", backgroundcolor)
 textRect = text.get_rect()
 textRect.center = (tx,ty)
 #menu text Play

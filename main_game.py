@@ -135,7 +135,7 @@ while running:
     for i in range (len(RSLocationsH)):
         pg.draw.lines(screen, "White", True, ((RSLocationsW[i], RSLocationsH[i]),(RSLocationsW[i]-WIDTH/128, RSLocationsH[i]+HEIGHT/72),(RSLocationsW[i], RSLocationsH[i]+HEIGHT/36), (RSLocationsW[i]+WIDTH/128, RSLocationsH[i]+HEIGHT/72)), 5)
             
-    if timer>=20:
+    if timer>=2000:
         if len(SLocationsH)>0:
             timer=0
             x=randint(0, 4)
