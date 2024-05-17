@@ -6,8 +6,8 @@ clock=pg.time.Clock()
 backgroundcolor=((0, 10, 30))
 
 running=True
-WIDTH=1920
-HEIGHT=1080
+WIDTH=1600
+HEIGHT=900
 timer=1
 screen=pg.display.set_mode((WIDTH, HEIGHT))
 
