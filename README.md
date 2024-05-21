@@ -12,8 +12,8 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 
 # In progress:
 
-* AI
-![](https://geps.dev/progress/90)
+* AI advanced
+![](https://geps.dev/progress/5)
 
 * Gameplay mechanics
 ![](https://geps.dev/progress/90)
@@ -25,6 +25,9 @@ Ovo je kod koji pravimo Dejan i ja za letnju školu programiranja 2023., igrica 
 ![](https://geps.dev/progress/70)
 
 # Completed:
+
+* AI basic
+![](https://geps.dev/progress/100)
 
 * Repository created
 ![](https://geps.dev/progress/100)
