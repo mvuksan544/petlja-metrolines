@@ -8,6 +8,7 @@ backgroundcolor=((0, 10, 30))
 running=True
 WIDTH=1600
 HEIGHT=900
+
 timer=1
 screen=pg.display.set_mode((WIDTH, HEIGHT))
 
@@ -575,37 +576,37 @@ while running:
             if WSLocationsW[i]==Met0x[j] and WSLocationsH[i]==Met0y[j]:
                 for x in range(len(Met0p[j])):
                     if x<len(Met0p[j]):
-                        if Met0p[j][x]==SPassenagers[i][0]:
+                        if Met0p[j][x]%4==SPassenagers[i][0]:
                             Met0p[j].pop(x)
         for j in range(len(Met1x)):
             if WSLocationsW[i]==Met1x[j] and WSLocationsH[i]==Met1y[j]:
                 for x in range(len(Met1p[j])):
                     if x<len(Met1p[j]):
-                        if Met1p[j][x]==SPassenagers[i][0]:
+                        if Met1p[j][x]%4==SPassenagers[i][0]:
                             Met1p[j].pop(x)
         for j in range(len(Met2x)):
             if WSLocationsW[i]==Met2x[j] and WSLocationsH[i]==Met2y[j]:
                 for x in range(len(Met2p[j])):
                     if x<len(Met2p[j]):
-                        if Met2p[j][x]==SPassenagers[i][0]:
+                        if Met2p[j][x]%4==SPassenagers[i][0]:
                             Met2p[j].pop(x)
         for j in range(len(Met2x)):
             if WSLocationsW[i]==Met2x[j] and WSLocationsH[i]==Met2y[j]:
                 for x in range(len(Met2p[j])):
                     if x<len(Met2p[j]):
-                        if Met2p[j][x]==SPassenagers[i][0]:
+                        if Met2p[j][x]%4==SPassenagers[i][0]:
                             Met2p[j].pop(x)
         for j in range(len(Met3x)):
             if WSLocationsW[i]==Met3x[j] and WSLocationsH[i]==Met3y[j]:
                 for x in range(len(Met3p[j])):
                     if x<len(Met3p[j]):
-                        if Met3p[j][x]==SPassenagers[i][0]:
+                        if Met3p[j][x]%4==SPassenagers[i][0]:
                             Met3p[j].pop(x)
         for j in range(len(Met4x)):
             if WSLocationsW[i]==Met4x[j] and WSLocationsH[i]==Met4y[j]:
                 for x in range(len(Met4p[j])):
                     if x<len(Met4p[j]):
-                        if Met4p[j][x]==SPassenagers[i][0]:
+                        if Met4p[j][x]%4==SPassenagers[i][0]:
                             Met4p[j].pop(x)
     #Passenager boarding
     for i in range (len(WSLocationsH)):
